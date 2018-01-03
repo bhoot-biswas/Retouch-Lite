@@ -203,10 +203,21 @@ if ( ! class_exists( 'Retouch_Lite' ) ) {
 		 * Enqueue scripts and styles.
 		 */
 		public function scripts() {
+			global $retouch_lite_version;
+
+			/**
+			 * Styles
+			 */
 			wp_enqueue_style( 'retouch-lite-style', get_stylesheet_uri() );
+			wp_enqueue_style( 'retouch-lite-theme', get_template_directory_uri() . '/assets/css/main.css', array(), $retouch_lite_version );
+
+			/**
+			 * Scripts
+			 */
+			wp_enqueue_script( 'retouch-lite-main', get_template_directory_uri() . '/assets/js/main.js', array(), '20151215', true );
+			wp_enqueue_script( 'retouch-lite-vendors', get_template_directory_uri() . '/assets/js/vendors.js', array(), '20151215', true );
 
 			wp_enqueue_script( 'retouch-lite-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
-
 			wp_enqueue_script( 'retouch-lite-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
 			if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
