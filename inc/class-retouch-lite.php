@@ -28,8 +28,8 @@ if ( ! class_exists( 'Retouch_Lite' ) ) {
 
 			if ( is_null( $instance ) ) {
 				$instance = new self();
-				$instance->setup_actions();
 				$instance->includes();
+				$instance->setup_actions();
 			}
 
 			return $instance;
@@ -41,6 +41,33 @@ if ( ! class_exists( 'Retouch_Lite' ) ) {
 		private function __construct() {}
 
 		/**
+		 * Loads include and admin files for the plugin.
+		 */
+		private function includes() {
+			// Launch the Hybrid Core framework.
+			require get_template_directory() . '/lib/hybrid.php';
+
+			// Implement the Custom Header feature.
+			require get_template_directory() . '/inc/custom-header.php';
+			// Custom template tags for this theme.
+			require get_template_directory() . '/inc/template-tags.php';
+			// Functions which enhance the theme by hooking into WordPress.
+			require get_template_directory() . '/inc/template-functions.php';
+			// Customizer additions.
+			require get_template_directory() . '/inc/customizer.php';
+
+			// Load Jetpack compatibility file.
+			if ( defined( 'JETPACK__VERSION' ) ) {
+				require get_template_directory() . '/inc/jetpack.php';
+			}
+
+			// Load WooCommerce compatibility file.
+			if ( class_exists( 'WooCommerce' ) ) {
+				require get_template_directory() . '/inc/woocommerce.php';
+			}
+		}
+
+		/**
 		 * Sets up initial actions.
 		 *
 		 * @since  1.0.0
@@ -50,52 +77,16 @@ if ( ! class_exists( 'Retouch_Lite' ) ) {
 		private function setup_actions() {
 			// Theme setup.
 			add_action( 'after_setup_theme', array( $this, 'theme_setup' ) );
-			add_action( 'after_setup_theme', array( $this, 'content_width' ), 0 );
 
 			// Register widgets.
 			add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 
+			// Register custom layouts.
+			add_action( 'hybrid_register_layouts', array( $this, 'register_layouts' ) );
+
 			// Register scripts, styles, and fonts.
 			add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ) );
-		}
-
-		/**
-		 * Loads include and admin files for the plugin.
-		 */
-		private function includes() {
-			/**
-			 * Implement the Custom Header feature.
-			 */
-			require get_template_directory() . '/inc/custom-header.php';
-
-			/**
-			 * Custom template tags for this theme.
-			 */
-			require get_template_directory() . '/inc/template-tags.php';
-
-			/**
-			 * Functions which enhance the theme by hooking into WordPress.
-			 */
-			require get_template_directory() . '/inc/template-functions.php';
-
-			/**
-			 * Customizer additions.
-			 */
-			require get_template_directory() . '/inc/customizer.php';
-
-			/**
-			 * Load Jetpack compatibility file.
-			 */
-			if ( defined( 'JETPACK__VERSION' ) ) {
-				require get_template_directory() . '/inc/jetpack.php';
-			}
-
-			/**
-			 * Load WooCommerce compatibility file.
-			 */
-			if ( class_exists( 'WooCommerce' ) ) {
-				require get_template_directory() . '/inc/woocommerce.php';
-			}
+			add_action( 'wp_enqueue_scripts', array( $this, 'styles' ) );
 		}
 
 		/**
@@ -106,47 +97,27 @@ if ( ! class_exists( 'Retouch_Lite' ) ) {
 		 * as indicating support for post thumbnails.
 		 */
 		public function theme_setup() {
-			/*
-			 * Make theme available for translation.
-			 * Translations can be filed in the /languages/ directory.
-			 * If you're building a theme based on Retouch Lite, use a find and replace
-			 * to change 'retouch-lite' to the name of your theme in all the template files.
-			 */
-			load_theme_textdomain( 'retouch-lite', get_template_directory() . '/languages' );
+			// Theme layouts.
+			add_theme_support( 'theme-layouts', array( 'default' => is_rtl() ? '2c-r' : '2c-l' ) );
+
+			// Enable custom template hierarchy.
+			add_theme_support( 'hybrid-core-template-hierarchy' );
+
+			// The best thumbnail/image script ever.
+			add_theme_support( 'get-the-image' );
+
+			// Breadcrumbs. Yay!
+			add_theme_support( 'breadcrumb-trail' );
+
+			// Nicer [gallery] shortcode implementation.
+			add_theme_support( 'cleaner-gallery' );
 
 			// Add default posts and comments RSS feed links to head.
 			add_theme_support( 'automatic-feed-links' );
 
-			/*
-			 * Let WordPress manage the document title.
-			 * By adding theme support, we declare that this theme does not use a
-			 * hard-coded <title> tag in the document head, and expect WordPress to
-			 * provide it for us.
-			 */
-			add_theme_support( 'title-tag' );
-
-			/*
-			 * Enable support for Post Thumbnails on posts and pages.
-			 *
-			 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
-			 */
-			add_theme_support( 'post-thumbnails' );
-
 			// This theme uses wp_nav_menu() in one location.
 			register_nav_menus( array(
 				'menu-1' => esc_html__( 'Primary', 'retouch-lite' ),
-			) );
-
-			/*
-			 * Switch default core markup for search form, comment form, and comments
-			 * to output valid HTML5.
-			 */
-			add_theme_support( 'html5', array(
-				'search-form',
-				'comment-form',
-				'comment-list',
-				'gallery',
-				'caption',
 			) );
 
 			// Set up the WordPress core custom background feature.
@@ -169,17 +140,9 @@ if ( ! class_exists( 'Retouch_Lite' ) ) {
 				'flex-width'  => true,
 				'flex-height' => true,
 			) );
-		}
 
-		/**
-		 * Set the content width in pixels, based on the theme's design and stylesheet.
-		 *
-		 * Priority 0 to make it available to lower priority callbacks.
-		 *
-		 * @global int $content_width
-		 */
-		public function content_width() {
-			$GLOBALS['content_width'] = apply_filters( 'retouch_lite_content_width', 640 );
+			// Handle content width for embeds and images.
+			hybrid_set_content_width( 1280 );
 		}
 
 		/**
@@ -188,32 +151,46 @@ if ( ! class_exists( 'Retouch_Lite' ) ) {
 		 * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
 		 */
 		public function widgets_init() {
-			register_sidebar( array(
-				'name'          => esc_html__( 'Sidebar', 'retouch-lite' ),
-				'id'            => 'sidebar-1',
-				'description'   => esc_html__( 'Add widgets here.', 'retouch-lite' ),
-				'before_widget' => '<section id="%1$s" class="widget %2$s">',
-				'after_widget'  => '</section>',
-				'before_title'  => '<h2 class="widget-title">',
-				'after_title'   => '</h2>',
-			) );
+			hybrid_register_sidebar(
+				array(
+					'id'          => 'sidebar-1',
+					'name'        => esc_html__( 'Sidebar', 'retouch-lite' ),
+					'description' => esc_html__( 'Add widgets here.', 'retouch-lite' ),
+				)
+			);
 		}
 
 		/**
-		 * Enqueue scripts and styles.
+		 * Registers layouts.
+		 */
+		public function register_layouts() {
+			hybrid_register_layout( '1c',
+				array(
+					'label' => esc_html__( '1 Column', 'retouch-lite' ),
+					'image' => '%s/assets/images/layouts/1c.png',
+				)
+			);
+
+			hybrid_register_layout( '2c-l',
+				array(
+					'label' => esc_html__( '2 Columns: Content / Sidebar', 'retouch-lite' ),
+					'image' => '%s/assets/images/layouts/2c-l.png',
+				)
+			);
+
+			hybrid_register_layout( '2c-r',
+				array(
+					'label' => esc_html__( '2 Columns: Sidebar / Content', 'retouch-lite' ),
+					'image' => '%s/assets/images/layouts/2c-r.png',
+				)
+			);
+		}
+
+		/**
+		 * Enqueue scripts.
 		 */
 		public function scripts() {
-			global $retouch_lite_version;
-
-			/**
-			 * Styles
-			 */
-			wp_enqueue_style( 'retouch-lite-style', get_stylesheet_uri() );
-			wp_enqueue_style( 'retouch-lite-theme', get_template_directory_uri() . '/assets/css/main.css', array(), $retouch_lite_version );
-
-			/**
-			 * Scripts
-			 */
+			// Load fremework and vendors.
 			wp_enqueue_script( 'retouch-lite-main', get_template_directory_uri() . '/assets/js/main.js', array(), '20151215', true );
 			wp_enqueue_script( 'retouch-lite-vendors', get_template_directory_uri() . '/assets/js/vendors.js', array(), '20151215', true );
 
@@ -223,6 +200,32 @@ if ( ! class_exists( 'Retouch_Lite' ) ) {
 			if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 				wp_enqueue_script( 'comment-reply' );
 			}
+		}
+
+		/**
+		 * Enqueue styles.
+		 */
+		public function styles() {
+			global $retouch_lite_version;
+
+			// Load one-five base style.
+			wp_enqueue_style( 'hybrid-one-five' );
+
+			// Load gallery style if 'cleaner-gallery' is active.
+			if ( current_theme_supports( 'cleaner-gallery' ) ) {
+				wp_enqueue_style( 'hybrid-gallery' );
+			}
+
+			// Load framework.
+			wp_enqueue_style( 'retouch-lite-theme', get_template_directory_uri() . '/assets/css/main.css', array(), $retouch_lite_version );
+
+			// Load parent theme stylesheet if child theme is active.
+			if ( is_child_theme() ) {
+				wp_enqueue_style( 'hybrid-parent' );
+			}
+
+			// Load active theme stylesheet.
+			wp_enqueue_style( 'hybrid-style' );
 		}
 	}
 }
