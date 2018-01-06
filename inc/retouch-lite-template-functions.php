@@ -29,17 +29,19 @@ if ( ! function_exists( 'retouch_lite_credit' ) ) {
 	function retouch_lite_credit() {
 		?>
 		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'retouch-lite' ) ); ?>">
+			<div class="container">
+				<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'retouch-lite' ) ); ?>">
+					<?php
+						/* translators: %s: CMS name, i.e. WordPress. */
+						printf( esc_html__( 'Proudly powered by %s', 'retouch-lite' ), 'WordPress' );
+					?>
+				</a>
+				<span class="sep"> | </span>
 				<?php
-					/* translators: %s: CMS name, i.e. WordPress. */
-					printf( esc_html__( 'Proudly powered by %s', 'retouch-lite' ), 'WordPress' );
+					/* translators: 1: Theme name, 2: Theme author. */
+					printf( esc_html__( 'Theme: %1$s by %2$s.', 'retouch-lite' ), 'retouch-lite', '<a href="http://underscores.me/">Underscores.me</a>' );
 				?>
-			</a>
-			<span class="sep"> | </span>
-			<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'retouch-lite' ), 'retouch-lite', '<a href="http://underscores.me/">Underscores.me</a>' );
-			?>
+			</div>
 		</div><!-- .site-info -->
 		<?php
 	}
