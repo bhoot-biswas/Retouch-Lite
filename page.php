@@ -18,14 +18,20 @@ get_header(); ?>
 		<main id="main" class="site-main">
 
 			<?php
-			while ( have_posts() ) : the_post();
+			while ( have_posts() ) :
+				the_post();
 
-				get_template_part( 'template-parts/content', 'page' );
+				do_action( 'retouch_lite_page_before' );
 
-				// If comments are open or we have at least one comment, load up the comment template.
-				if ( comments_open() || get_comments_number() ) :
-					comments_template();
-				endif;
+				// Loads the content/*.php template.
+				hybrid_get_content_template();
+
+				/**
+				 * Functions hooked into retouch_lite_page_after
+				 *
+				 * @hooked retouch_lite_display_comments [10]
+				 */
+				do_action( 'retouch_lite_page_after' );
 
 			endwhile; // End of the loop.
 			?>
@@ -34,5 +40,5 @@ get_header(); ?>
 	</div><!-- #primary -->
 
 <?php
-get_sidebar();
+do_action( 'retouch_lite_sidebar' );
 get_footer();

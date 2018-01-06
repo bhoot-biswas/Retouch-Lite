@@ -13,18 +13,22 @@ get_header(); ?>
 		<main id="main" class="site-main">
 
 		<?php
-		if ( have_posts() ) : ?>
+		if ( have_posts() ) :
+			?>
 
 			<header class="page-header">
-				<h1 class="page-title"><?php
+				<h1 class="page-title">
+					<?php
 					/* translators: %s: search query. */
 					printf( esc_html__( 'Search Results for: %s', 'retouch-lite' ), '<span>' . get_search_query() . '</span>' );
-				?></h1>
+					?>
+				</h1>
 			</header><!-- .page-header -->
 
 			<?php
 			/* Start the Loop */
-			while ( have_posts() ) : the_post();
+			while ( have_posts() ) :
+				the_post();
 
 				/**
 				 * Run the loop for the search to output the results.
@@ -39,13 +43,20 @@ get_header(); ?>
 
 		else :
 
-			get_template_part( 'template-parts/content', 'none' );
+			// Loads the content/error.php template.
+			locate_template( array( 'content/error.php' ), true );
 
-		endif; ?>
+		endif;
+		?>
 
 		</main><!-- #main -->
 	</section><!-- #primary -->
 
 <?php
-get_sidebar();
+/**
+ * Functions hooked into retouch_lite_sidebar
+ *
+ * @hooked retouch_lite_get_sidebar [10]
+ */
+do_action( 'retouch_lite_sidebar' );
 get_footer();

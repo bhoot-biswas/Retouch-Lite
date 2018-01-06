@@ -65,6 +65,11 @@ if ( ! class_exists( 'Retouch_Lite' ) ) {
 			if ( class_exists( 'WooCommerce' ) ) {
 				require get_template_directory() . '/inc/woocommerce.php';
 			}
+
+			// Load hooks and functions.
+			require get_template_directory() . '/inc/retouch-lite-functions.php';
+			require get_template_directory() . '/inc/retouch-lite-template-functions.php';
+			require get_template_directory() . '/inc/retouch-lite-template-hooks.php';
 		}
 
 		/**

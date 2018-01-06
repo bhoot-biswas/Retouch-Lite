@@ -13,7 +13,8 @@ get_header(); ?>
 		<main id="main" class="site-main">
 
 		<?php
-		if ( have_posts() ) : ?>
+		if ( have_posts() ) :
+			?>
 
 			<header class="page-header">
 				<?php
@@ -24,28 +25,24 @@ get_header(); ?>
 
 			<?php
 			/* Start the Loop */
-			while ( have_posts() ) : the_post();
-
-				/*
-				 * Include the Post-Format-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_format() );
-
-			endwhile;
-
-			the_posts_navigation();
+			get_template_part( 'loop' );
 
 		else :
 
-			get_template_part( 'template-parts/content', 'none' );
+			// Loads the content/error.php template.
+			locate_template( array( 'content/error.php' ), true );
 
-		endif; ?>
+		endif;
+		?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
 <?php
-get_sidebar();
+/**
+ * Functions hooked into retouch_lite_sidebar
+ *
+ * @hooked retouch_lite_get_sidebar [10]
+ */
+do_action( 'retouch_lite_sidebar' );
 get_footer();

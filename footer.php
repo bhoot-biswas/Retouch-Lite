@@ -13,19 +13,23 @@
 
 	</div><!-- #content -->
 
+	<?php do_action( 'retouch_lite_before_footer' ); ?>
+
 	<footer id="colophon" class="site-footer">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'retouch-lite' ) ); ?>"><?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'retouch-lite' ), 'WordPress' );
-			?></a>
-			<span class="sep"> | </span>
-			<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'retouch-lite' ), 'retouch-lite', '<a href="http://underscores.me/">Underscores.me</a>' );
-			?>
-		</div><!-- .site-info -->
+
+		<?php
+		/**
+		 * Functions hooked into retouch_lite_footer
+		 *
+		 * @hooked retouch_lite_credit [10]
+		 */
+		do_action( 'retouch_lite_footer' );
+		?>
+
 	</footer><!-- #colophon -->
+
+	<?php do_action( 'retouch_lite_after_footer' ); ?>
+
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
