@@ -1,39 +1,51 @@
 const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+var ExtractCSS = new ExtractTextPlugin('[name]');
 
 module.exports = {
     entry: {
-        main: ['./assets/js/src/app.js', './assets/sass/main.scss'],
-        vendors: ['./assets/js/src/vendors.js']
+        './assets/js/main.js': "./assets/js/src/app.js",
+        './assets/js/vendors.js': "./assets/js/src/vendors.js",
+        './style.css': "./assets/sass/main.scss",
+        './woocommerce.css': "./assets/sass/woocommerce.scss"
+    },
+    externals: {
+        jquery: 'jQuery'
     },
     output: {
-        filename: 'js/[name].js',
-        path: path.resolve(__dirname, 'assets')
+        filename: '[name]',
+        path: path.resolve(__dirname),
     },
     devtool: 'source-map',
     module: {
         rules: [{
             test: /\.scss$/,
-            use: ExtractTextPlugin.extract({
+            exclude: /node_modules/,
+            use: ExtractCSS.extract({
                 fallback: 'style-loader',
                 use: [{
-                    loader: "css-loader",
-                    options: {
-                        sourceMap: true
+                        loader: "css-loader",
+                        options: {
+                            importLoaders: 1,
+                            sourceMap: true
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    }, {
+                        loader: "sass-loader",
+                        options: {
+                            sourceMap: true
+                        }
                     }
-                }, {
-                    loader: "sass-loader",
-                    options: {
-                        sourceMap: true
-                    }
-                }]
+                ]
             })
         }]
     },
     plugins: [
-        new ExtractTextPlugin({
-            filename: 'css/[name].css',
-            allChunks: true
-        })
+        ExtractCSS
     ]
 };

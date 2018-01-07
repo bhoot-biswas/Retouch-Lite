@@ -196,11 +196,11 @@ if ( ! class_exists( 'Retouch_Lite' ) ) {
 		 */
 		public function scripts() {
 			// Load fremework and vendors.
+			wp_enqueue_script( 'retouch-lite-vendors', get_template_directory_uri() . '/assets/js/vendors.js', array( 'jquery' ), '20151215', true );
 			wp_enqueue_script( 'retouch-lite-main', get_template_directory_uri() . '/assets/js/main.js', array(), '20151215', true );
-			wp_enqueue_script( 'retouch-lite-vendors', get_template_directory_uri() . '/assets/js/vendors.js', array(), '20151215', true );
 
-			wp_enqueue_script( 'retouch-lite-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
-			wp_enqueue_script( 'retouch-lite-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+			wp_enqueue_script( 'retouch-lite-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), '20151215', true );
+			wp_enqueue_script( 'retouch-lite-skip-link-focus-fix', get_template_directory_uri() . '/assets/js/skip-link-focus-fix.js', array(), '20151215', true );
 
 			if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 				wp_enqueue_script( 'comment-reply' );
@@ -220,9 +220,6 @@ if ( ! class_exists( 'Retouch_Lite' ) ) {
 			if ( current_theme_supports( 'cleaner-gallery' ) ) {
 				wp_enqueue_style( 'hybrid-gallery' );
 			}
-
-			// Load framework.
-			wp_enqueue_style( 'retouch-lite-theme', get_template_directory_uri() . '/assets/css/main.css', array(), $retouch_lite_version );
 
 			// Load parent theme stylesheet if child theme is active.
 			if ( is_child_theme() ) {
