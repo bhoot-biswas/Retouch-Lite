@@ -1447,7 +1447,7 @@ input[type="submit"] {
   border-radius: 0.3rem; }
 select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select:not([size]):not([multiple]), .input-group-lg > .input-group-prepend > select.input-group-text:not([size]):not([multiple]), .input-group-lg > .input-group-append > select.input-group-text:not([size]):not([multiple]), .input-group-lg > .input-group-prepend > select.btn:not([size]):not([multiple]), .input-group-lg > .input-group-append > select.btn:not([size]):not([multiple]) {
   height: calc(2.875rem + 2px); }
-.form-group {
+.form-group, #respond p {
   margin-bottom: 1rem; }
 .form-text {
   display: block;
@@ -1734,7 +1734,7 @@ textarea:invalid, .was-validated select:invalid, .form-control.is-invalid, input
           -ms-flex-pack: center;
               justify-content: center;
       margin-bottom: 0; }
-    .form-inline .form-group {
+    .form-inline .form-group, .form-inline #respond p, #respond .form-inline p {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -6933,10 +6933,65 @@ textarea {
 /*--------------------------------------------------------------
 ## Comments
 --------------------------------------------------------------*/
+#comments .comment-list, #comments .comment-respond, #comments .comments-title, #comments .navigation, #comments .no-comments {
+  margin-top: 3rem;
+  margin-bottom: 0; }
+#comments .comment-list:first-child, #comments .comment-respond:first-child, #comments .comments-title:first-child, #comments .navigation:first-child, #comments .no-comments:first-child {
+    margin-top: 0; }
+#comments .comment .comment-respond {
+  margin-top: 2rem; }
+.comment-list {
+  padding-left: 0;
+  list-style: none; }
+.comment-list .children {
+    padding-left: 0;
+    list-style: none;
+    padding-left: 2rem;
+    border-left: 1px solid #e9ecef; }
+.comment-body {
+  margin-top: 2rem;
+  padding: 2.5rem;
+  border: 1px solid #e9ecef;
+  border-radius: 0.25rem; }
+.comment-meta {
+  margin-bottom: 1rem; }
 .comment-content a {
   word-wrap: break-word; }
 .bypostauthor {
   display: block; }
+.comment-author .avatar {
+  height: 3rem;
+  width: 3rem;
+  float: left;
+  margin-right: 1rem; }
+#respond .comment-reply-title {
+  margin-bottom: 1rem; }
+#respond p:last-of-type {
+  margin-bottom: 0; }
+@media (min-width: 992px) {
+  #respond #commentform {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px; }
+  #respond .comment-form-author, #respond .comment-form-comment, #respond .comment-form-email, #respond .comment-form-url, #respond .comment-notes, #respond .form-submit, #respond .logged-in-as {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+    max-width: 100%; }
+  #respond .comment-form-author, #respond .comment-form-email, #respond .comment-form-url, #respond .form-submit {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 33.33333%;
+            flex: 0 0 33.33333%;
+    max-width: 33.33333%; } }
 /*--------------------------------------------------------------
 # Infinite scroll
 --------------------------------------------------------------*/
