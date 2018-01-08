@@ -47,14 +47,41 @@ if ( ! function_exists( 'retouch_lite_credit' ) ) {
 	}
 }
 
-if ( ! function_exists( 'retouch_lite_site_branding' ) ) {
+if ( ! function_exists( 'retouch_lite_primary_navigation' ) ) {
 	/**
-	 * Site branding wrapper and display
+	 * Display primary navigation
 	 *
 	 * @since  1.0.0
 	 * @return void
 	 */
-	function retouch_lite_site_branding() {
+	function retouch_lite_primary_navigation() {
+		?>
+		<nav id="site-navigation" class="main-navigation navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container">
+				<?php
+				/**
+				 * Functions hooked into retouch_lite_primary_navigation
+				 *
+				 * @hooked retouch_lite_navbar_brand [10]
+				 * @hooked retouch_lite_navbar_toggler [20]
+				 * @hooked retouch_lite_navbar_collapse [30]
+				 */
+				do_action( 'retouch_lite_primary_navigation' );
+				?>
+			</div>
+		</nav><!-- #site-navigation -->
+		<?php
+	}
+}
+
+if ( ! function_exists( 'retouch_lite_navbar_brand' ) ) {
+	/**
+	 * Display navbar brand
+	 *
+	 * @since  1.0.0
+	 * @return void
+	 */
+	function retouch_lite_navbar_brand() {
 		?>
 		<div class="site-branding">
 			<?php
@@ -79,25 +106,58 @@ if ( ! function_exists( 'retouch_lite_site_branding' ) ) {
 	}
 }
 
-if ( ! function_exists( 'retouch_lite_primary_navigation' ) ) {
+if ( ! function_exists( 'retouch_lite_navbar_toggler' ) ) {
 	/**
-	 * Display Primary Navigation
+	 * Display navbar toggler
 	 *
 	 * @since  1.0.0
 	 * @return void
 	 */
-	function retouch_lite_primary_navigation() {
+	function retouch_lite_navbar_toggler() {
 		?>
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'retouch-lite' ); ?></button>
-			<?php
-				wp_nav_menu( array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				) );
-			?>
-		</nav><!-- #site-navigation -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+			<?php esc_html_e( 'Primary Menu', 'retouch-lite' ); ?>
+			<span class="navbar-toggler-icon"></span>
+		</button>
 		<?php
+	}
+}
+
+if ( ! function_exists( 'retouch_lite_navbar_collapse' ) ) {
+	/**
+	 * Display navbar_collapse
+	 *
+	 * @since  1.0.0
+	 * @return void
+	 */
+	function retouch_lite_navbar_collapse() {
+		?>
+		<div class="collapse navbar-collapse" id="navbar-collapse">
+			<?php
+			/**
+			 * Functions hooked into retouch_lite_navbar_collapse
+			 *
+			 * @hooked retouch_lite_primary_menu [10]
+			 */
+			do_action( 'retouch_lite_navbar_collapse' );
+			?>
+		</div>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'retouch_lite_primary_menu' ) ) {
+	/**
+	 * Display primary menu
+	 *
+	 * @since  1.0.0
+	 * @return void
+	 */
+	function retouch_lite_primary_menu() {
+		wp_nav_menu( array(
+			'theme_location' => 'menu-1',
+			'menu_id'        => 'primary-menu',
+		) );
 	}
 }
 

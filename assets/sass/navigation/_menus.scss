@@ -1,66 +1,67 @@
-.main-navigation {
-	clear: both;
-	display: block;
-	float: left;
-	width: 100%;
+.main-navigation {}
+
+.site-branding {
+	@extend .navbar-brand;
+
+	.site-description,
+	.site-title {
+		margin-bottom: 0;
+	}
+
+	.site-title {
+		font-size: $navbar-brand-font-size;
+	}
+
+	.site-description {
+		font-size: $font-size-base;
+	}
+
+	@include media-breakpoint-up(lg) {
+		.site-description,
+		.site-title {
+			display: inline-block;
+		}
+	}
+}
+
+.menu {
+	@extend .navbar-nav;
 
 	ul {
-		display: none;
-		list-style: none;
-		margin: 0;
-		padding-left: 0;
+		@extend .dropdown-menu;
 
 		ul {
-			box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-			float: left;
-			position: absolute;
-			top: 100%;
-			left: -999em;
-			z-index: 99999;
-
-			ul {
-				left: -999em;
-				top: 0;
-			}
-
-			li {
-				&:hover > ul,
-				&.focus > ul {
-					left: 100%;
-				}
-			}
-
-			a {
-				width: 200px;
-			}
-
-			:hover > a,
-			.focus > a {
-			}
-
-			a:hover,
-			a.focus {
-			}
+			left: 100%;
+			top: 0;
 		}
 
-		li:hover > ul,
-		li.focus > ul {
-			left: auto;
+		a {
+			@extend .dropdown-item;
+		}
+	}
+
+	.page_item_has_children,
+	.menu-item-has-children {
+		@extend .dropdown;
+
+		> a {
+			@extend .dropdown-toggle;
+		}
+	}
+
+	> li {
+		@extend .nav-item;
+
+		> a {
+			@extend .nav-link;
 		}
 	}
 
 	li {
-		float: left;
-		position: relative;
-
-		&:hover > a,
-		&.focus > a {
+		&:hover > ul,
+		&.focus > ul {
+			display: block;
 		}
-	}
-
-	a {
-		display: block;
-		text-decoration: none;
 	}
 
 	.current_page_item > a,
@@ -70,20 +71,6 @@
 	}
 }
 
-/* Small menu. */
-.menu-toggle,
-.main-navigation.toggled ul {
-	display: block;
-}
-
-@media screen and (min-width: 37.5em) {
-	.menu-toggle {
-		display: none;
-	}
-	.main-navigation ul {
-		display: block;
-	}
-}
 
 .comment-navigation,
 .posts-navigation,

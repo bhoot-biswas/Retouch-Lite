@@ -33,17 +33,14 @@
 
 	<header id="masthead" class="site-header">
 
-		<div class="container">
-			<?php
-			/**
-			 * Functions hooked into retouch_lite_header
-			 *
-			 * @hooked retouch_lite_site_branding [10]
-			 * @hooked retouch_lite_primary_navigation [20]
-			 */
-			do_action( 'retouch_lite_header' );
-			?>			
-		</div>
+		<?php
+		/**
+		 * Functions hooked into retouch_lite_header
+		 *
+		 * @hooked retouch_lite_primary_navigation [10]
+		 */
+		do_action( 'retouch_lite_header' );
+		?>
 
 	</header><!-- #masthead -->
 

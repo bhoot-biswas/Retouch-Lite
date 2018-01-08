@@ -13,8 +13,11 @@
  * @see  retouch_lite_primary_navigation()
  */
 add_action( 'retouch_lite_before_header', 'retouch_lite_skip_links', 10 );
-add_action( 'retouch_lite_header', 'retouch_lite_site_branding', 10 );
-add_action( 'retouch_lite_header', 'retouch_lite_primary_navigation', 20 );
+add_action( 'retouch_lite_header', 'retouch_lite_primary_navigation', 10 );
+add_action( 'retouch_lite_primary_navigation', 'retouch_lite_navbar_brand', 10 );
+add_action( 'retouch_lite_primary_navigation', 'retouch_lite_navbar_toggler', 20 );
+add_action( 'retouch_lite_primary_navigation', 'retouch_lite_navbar_collapse', 30 );
+add_action( 'retouch_lite_navbar_collapse', 'retouch_lite_primary_menu', 10 );
 
 /**
  * Posts
