@@ -211,11 +211,6 @@ if ( ! class_exists( 'Retouch_Lite' ) ) {
 		 * Enqueue styles.
 		 */
 		public function styles() {
-			global $retouch_lite_version;
-
-			// Load one-five base style.
-			wp_enqueue_style( 'hybrid-one-five' );
-
 			// Load gallery style if 'cleaner-gallery' is active.
 			if ( current_theme_supports( 'cleaner-gallery' ) ) {
 				wp_enqueue_style( 'hybrid-gallery' );
