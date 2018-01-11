@@ -246,6 +246,34 @@ if ( ! function_exists( 'retouch_lite_page_footer' ) ) {
 	}
 }
 
+if ( ! function_exists( 'retouch_lite_post_hero' ) ) {
+	/**
+	 * Template part for displaying hero image on the single page.
+	 *
+	 * @since 1.0.0
+	 */
+	function retouch_lite_post_hero() {
+		if ( ! is_singular() || post_password_required() || is_attachment() ) {
+			return;
+		}
+
+		if ( 'post' !== get_post_type() && ! has_post_thumbnail() || 'post' === get_post_type() && ! retouch_lite_has_post_thumbnail() ) {
+			return;
+		}
+		?>
+		<div class="entry-hero" <?php retouch_lite_background_image(); ?>>
+			<div class="entry-hero-wrapper">
+				<?php
+				retouch_lite_entry_meta();
+
+				the_title( '<h1 class="entry-title">', '</h1>' );
+				?>
+			</div><!-- .entry-hero-wrapper -->
+		</div><!-- .entry-hero -->
+		<?php
+	}
+}
+
 if ( ! function_exists( 'retouch_lite_post_header' ) ) {
 	/**
 	 * Display the post header with a link to the single post
@@ -253,25 +281,23 @@ if ( ! function_exists( 'retouch_lite_post_header' ) ) {
 	 * @since 1.0.0
 	 */
 	function retouch_lite_post_header() {
+		if ( ! is_single() || ! retouch_lite_has_post_thumbnail() ) :
 		?>
-		<header class="entry-header">
-			<?php
-			if ( is_singular() ) :
-				the_title( '<h1 class="entry-title">', '</h1>' );
-			else :
-				the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-			endif;
+		<header class="entry-header" <?php retouch_lite_background_image(); ?>>
+			<div class="entry-header__wrap">
+				<?php
+				retouch_lite_entry_meta();
 
-			if ( 'post' === get_post_type() ) :
+				if ( is_singular() ) :
+					the_title( '<h1 class="entry-title">', '</h1>' );
+				else :
+					the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
+				endif;
 				?>
-			<div class="entry-meta">
-				<?php retouch_lite_posted_on(); ?>
-			</div><!-- .entry-meta -->
-			<?php
-			endif;
-			?>
+			</div>
 		</header><!-- .entry-header -->
 		<?php
+		endif;
 	}
 }
 

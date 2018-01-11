@@ -343,23 +343,23 @@ pre code {
 .pre-scrollable {
   max-height: 340px;
   overflow-y: scroll; }
-.container, .site-content {
+.container, .site-content, .entry-hero .entry-hero-wrapper {
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto; }
 @media (min-width: 576px) {
-    .container, .site-content {
+    .container, .site-content, .entry-hero .entry-hero-wrapper {
       max-width: 540px; } }
 @media (min-width: 768px) {
-    .container, .site-content {
+    .container, .site-content, .entry-hero .entry-hero-wrapper {
       max-width: 720px; } }
 @media (min-width: 992px) {
-    .container, .site-content {
+    .container, .site-content, .entry-hero .entry-hero-wrapper {
       max-width: 960px; } }
 @media (min-width: 1200px) {
-    .container, .site-content {
+    .container, .site-content, .entry-hero .entry-hero-wrapper {
       max-width: 1140px; } }
 .container-fluid {
   width: 100%;
@@ -3680,7 +3680,7 @@ input[type="submit"]:not(:first-child), .input-group > .input-group-prepend:firs
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding: 0.5rem 1rem; }
-.navbar > .container, .navbar > .site-content, .navbar > .container-fluid {
+.navbar > .container, .navbar > .site-content, .entry-hero .navbar > .entry-hero-wrapper, .navbar > .container-fluid {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -3752,7 +3752,7 @@ input[type="submit"]:not(:first-child), .input-group > .input-group-prepend:firs
   background: no-repeat center center;
   background-size: 100% 100%; }
 @media (max-width: 575.99px) {
-  .navbar-expand-sm > .container, .navbar-expand-sm > .site-content, .navbar-expand-sm > .container-fluid {
+  .navbar-expand-sm > .container, .navbar-expand-sm > .site-content, .entry-hero .navbar-expand-sm > .entry-hero-wrapper, .navbar-expand-sm > .container-fluid {
     padding-right: 0;
     padding-left: 0; } }
 @media (min-width: 576px) {
@@ -3777,7 +3777,7 @@ input[type="submit"]:not(:first-child), .input-group > .input-group-prepend:firs
       .navbar-expand-sm .navbar-nav .nav-link, .navbar-expand-sm .menu .nav-link, .navbar-expand-sm .navbar-nav .menu > li > a, .navbar-expand-sm .menu > li > a {
         padding-right: .5rem;
         padding-left: .5rem; }
-    .navbar-expand-sm > .container, .navbar-expand-sm > .site-content, .navbar-expand-sm > .container-fluid {
+    .navbar-expand-sm > .container, .navbar-expand-sm > .site-content, .entry-hero .navbar-expand-sm > .entry-hero-wrapper, .navbar-expand-sm > .container-fluid {
       -ms-flex-wrap: nowrap;
           flex-wrap: nowrap; }
     .navbar-expand-sm .navbar-collapse {
@@ -3792,7 +3792,7 @@ input[type="submit"]:not(:first-child), .input-group > .input-group-prepend:firs
       top: auto;
       bottom: 100%; } }
 @media (max-width: 767.99px) {
-  .navbar-expand-md > .container, .navbar-expand-md > .site-content, .navbar-expand-md > .container-fluid {
+  .navbar-expand-md > .container, .navbar-expand-md > .site-content, .entry-hero .navbar-expand-md > .entry-hero-wrapper, .navbar-expand-md > .container-fluid {
     padding-right: 0;
     padding-left: 0; } }
 @media (min-width: 768px) {
@@ -3817,7 +3817,7 @@ input[type="submit"]:not(:first-child), .input-group > .input-group-prepend:firs
       .navbar-expand-md .navbar-nav .nav-link, .navbar-expand-md .menu .nav-link, .navbar-expand-md .navbar-nav .menu > li > a, .navbar-expand-md .menu > li > a {
         padding-right: .5rem;
         padding-left: .5rem; }
-    .navbar-expand-md > .container, .navbar-expand-md > .site-content, .navbar-expand-md > .container-fluid {
+    .navbar-expand-md > .container, .navbar-expand-md > .site-content, .entry-hero .navbar-expand-md > .entry-hero-wrapper, .navbar-expand-md > .container-fluid {
       -ms-flex-wrap: nowrap;
           flex-wrap: nowrap; }
     .navbar-expand-md .navbar-collapse {
@@ -3832,7 +3832,7 @@ input[type="submit"]:not(:first-child), .input-group > .input-group-prepend:firs
       top: auto;
       bottom: 100%; } }
 @media (max-width: 991.99px) {
-  .navbar-expand-lg > .container, .navbar-expand-lg > .site-content, .navbar-expand-lg > .container-fluid {
+  .navbar-expand-lg > .container, .navbar-expand-lg > .site-content, .entry-hero .navbar-expand-lg > .entry-hero-wrapper, .navbar-expand-lg > .container-fluid {
     padding-right: 0;
     padding-left: 0; } }
 @media (min-width: 992px) {
@@ -3857,7 +3857,7 @@ input[type="submit"]:not(:first-child), .input-group > .input-group-prepend:firs
       .navbar-expand-lg .navbar-nav .nav-link, .navbar-expand-lg .menu .nav-link, .navbar-expand-lg .navbar-nav .menu > li > a, .navbar-expand-lg .menu > li > a {
         padding-right: .5rem;
         padding-left: .5rem; }
-    .navbar-expand-lg > .container, .navbar-expand-lg > .site-content, .navbar-expand-lg > .container-fluid {
+    .navbar-expand-lg > .container, .navbar-expand-lg > .site-content, .entry-hero .navbar-expand-lg > .entry-hero-wrapper, .navbar-expand-lg > .container-fluid {
       -ms-flex-wrap: nowrap;
           flex-wrap: nowrap; }
     .navbar-expand-lg .navbar-collapse {
@@ -3872,7 +3872,7 @@ input[type="submit"]:not(:first-child), .input-group > .input-group-prepend:firs
       top: auto;
       bottom: 100%; } }
 @media (max-width: 1199.99px) {
-  .navbar-expand-xl > .container, .navbar-expand-xl > .site-content, .navbar-expand-xl > .container-fluid {
+  .navbar-expand-xl > .container, .navbar-expand-xl > .site-content, .entry-hero .navbar-expand-xl > .entry-hero-wrapper, .navbar-expand-xl > .container-fluid {
     padding-right: 0;
     padding-left: 0; } }
 @media (min-width: 1200px) {
@@ -3897,7 +3897,7 @@ input[type="submit"]:not(:first-child), .input-group > .input-group-prepend:firs
       .navbar-expand-xl .navbar-nav .nav-link, .navbar-expand-xl .menu .nav-link, .navbar-expand-xl .navbar-nav .menu > li > a, .navbar-expand-xl .menu > li > a {
         padding-right: .5rem;
         padding-left: .5rem; }
-    .navbar-expand-xl > .container, .navbar-expand-xl > .site-content, .navbar-expand-xl > .container-fluid {
+    .navbar-expand-xl > .container, .navbar-expand-xl > .site-content, .entry-hero .navbar-expand-xl > .entry-hero-wrapper, .navbar-expand-xl > .container-fluid {
       -ms-flex-wrap: nowrap;
           flex-wrap: nowrap; }
     .navbar-expand-xl .navbar-collapse {
@@ -3919,7 +3919,7 @@ input[type="submit"]:not(:first-child), .input-group > .input-group-prepend:firs
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start; }
-.navbar-expand > .container, .navbar-expand > .site-content, .navbar-expand > .container-fluid {
+.navbar-expand > .container, .navbar-expand > .site-content, .entry-hero .navbar-expand > .entry-hero-wrapper, .navbar-expand > .container-fluid {
     padding-right: 0;
     padding-left: 0; }
 .navbar-expand .navbar-nav, .navbar-expand .menu {
@@ -3935,7 +3935,7 @@ input[type="submit"]:not(:first-child), .input-group > .input-group-prepend:firs
 .navbar-expand .navbar-nav .nav-link, .navbar-expand .menu .nav-link, .navbar-expand .navbar-nav .menu > li > a, .navbar-expand .menu > li > a {
       padding-right: .5rem;
       padding-left: .5rem; }
-.navbar-expand > .container, .navbar-expand > .site-content, .navbar-expand > .container-fluid {
+.navbar-expand > .container, .navbar-expand > .site-content, .entry-hero .navbar-expand > .entry-hero-wrapper, .navbar-expand > .container-fluid {
     -ms-flex-wrap: nowrap;
         flex-wrap: nowrap; }
 .navbar-expand .navbar-collapse {
@@ -6923,6 +6923,27 @@ textarea {
   display: block; }
 .hentry {
   margin: 0 0 1.5em; }
+.has-post-thumbnail .entry-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  min-height: 50vh; }
+.has-post-thumbnail .entry-header .entry-header__wrap {
+    padding: 2rem; }
+.entry-hero {
+  min-height: 70vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end; }
+.entry-hero .entry-hero-wrapper {
+    padding-top: 2rem;
+    padding-bottom: 2rem; }
 .updated:not(.published) {
   display: none; }
 .page-content, .entry-content, .entry-summary {

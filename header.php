@@ -44,7 +44,14 @@
 
 	</header><!-- #masthead -->
 
-	<?php do_action( 'retouch_lite_before_content' ); ?>
+	<?php
+	/**
+	 * Functions hooked into retouch_lite_before_content
+	 *
+	 * @hooked retouch_lite_post_hero [10]
+	 */
+	do_action( 'retouch_lite_before_content' );
+	?>
 
 	<div id="content" class="site-content">
 

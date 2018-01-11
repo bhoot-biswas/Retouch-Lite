@@ -7,11 +7,28 @@
  * @package Retouch_Lite
  */
 
-if ( ! function_exists( 'retouch_lite_posted_on' ) ) :
+if ( ! function_exists( 'retouch_lite_entry_meta' ) ) :
 	/**
 	 * Prints HTML with meta information for the current post-date/time and author.
 	 */
-	function retouch_lite_posted_on() {
+	function retouch_lite_entry_meta() {
+		// Hide category and tag text for pages.
+		if ( 'post' === get_post_type() ) {
+			/* translators: used between list items, there is a space after the comma */
+			$categories_list = get_the_category_list( esc_html__( ', ', 'retouch-lite' ) );
+			if ( $categories_list ) {
+				/* translators: 1: list of categories. */
+				printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'retouch-lite' ) . '</span>', $categories_list ); // WPCS: XSS OK.
+			}
+		}
+	}
+endif;
+
+if ( ! function_exists( 'retouch_lite_entry_footer' ) ) :
+	/**
+	 * Prints HTML with meta information for the categories, tags and comments.
+	 */
+	function retouch_lite_entry_footer() {
 		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 			$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
@@ -38,23 +55,8 @@ if ( ! function_exists( 'retouch_lite_posted_on' ) ) :
 
 		echo '<span class="posted-on">' . $posted_on . '</span><span class="byline"> ' . $byline . '</span>'; // WPCS: XSS OK.
 
-	}
-endif;
-
-if ( ! function_exists( 'retouch_lite_entry_footer' ) ) :
-	/**
-	 * Prints HTML with meta information for the categories, tags and comments.
-	 */
-	function retouch_lite_entry_footer() {
 		// Hide category and tag text for pages.
 		if ( 'post' === get_post_type() ) {
-			/* translators: used between list items, there is a space after the comma */
-			$categories_list = get_the_category_list( esc_html__( ', ', 'retouch-lite' ) );
-			if ( $categories_list ) {
-				/* translators: 1: list of categories. */
-				printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'retouch-lite' ) . '</span>', $categories_list ); // WPCS: XSS OK.
-			}
-
 			/* translators: used between list items, there is a space after the comma */
 			$tags_list = get_the_tag_list( '', esc_html_x( ', ', 'list item separator', 'retouch-lite' ) );
 			if ( $tags_list ) {

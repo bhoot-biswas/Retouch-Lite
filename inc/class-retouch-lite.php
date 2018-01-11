@@ -70,6 +70,9 @@ if ( ! class_exists( 'Retouch_Lite' ) ) {
 			require get_template_directory() . '/inc/retouch-lite-functions.php';
 			require get_template_directory() . '/inc/retouch-lite-template-functions.php';
 			require get_template_directory() . '/inc/retouch-lite-template-hooks.php';
+
+			// Extras.
+			require get_template_directory() . '/inc/extras.php';
 		}
 
 		/**

@@ -6,6 +6,30 @@
 	margin: 0 0 1.5em;
 }
 
+.has-post-thumbnail {
+	.entry-header {
+		display: flex;
+		align-items: flex-end;
+		min-height: 50vh;
+
+		.entry-header__wrap {
+			padding: 2rem;
+		}
+	}
+}
+
+.entry-hero {
+	min-height: 70vh;
+	display: flex;
+	align-items: flex-end;
+
+	.entry-hero-wrapper {
+		@extend .container;
+		padding-top: 2rem;
+		padding-bottom: 2rem;
+	}
+}
+
 .updated:not(.published) {
 	display: none;
 }

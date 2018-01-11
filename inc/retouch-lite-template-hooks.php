@@ -22,15 +22,15 @@ add_action( 'retouch_lite_navbar_collapse', 'retouch_lite_primary_menu', 10 );
 /**
  * Posts
  *
+ * @see  retouch_lite_post_hero()
  * @see  retouch_lite_post_header()
- * @see  retouch_lite_post_thumbnail()
  * @see  retouch_lite_post_content()
  * @see  retouch_lite_post_footer()
  */
+add_action( 'retouch_lite_before_content', 'retouch_lite_post_hero', 10 );
 add_action( 'retouch_lite_post', 'retouch_lite_post_header', 10 );
-add_action( 'retouch_lite_post', 'retouch_lite_post_thumbnail', 20 );
-add_action( 'retouch_lite_post', 'retouch_lite_post_content', 30 );
-add_action( 'retouch_lite_post', 'retouch_lite_post_footer', 40 );
+add_action( 'retouch_lite_post', 'retouch_lite_post_content', 20 );
+add_action( 'retouch_lite_post', 'retouch_lite_post_footer', 30 );
 
 /**
  * Pages
@@ -42,6 +42,7 @@ add_action( 'retouch_lite_post', 'retouch_lite_post_footer', 40 );
 add_action( 'retouch_lite_page', 'retouch_lite_page_header', 10 );
 add_action( 'retouch_lite_page', 'retouch_lite_post_thumbnail', 20 );
 add_action( 'retouch_lite_page', 'retouch_lite_page_content', 30 );
+add_action( 'retouch_lite_page', 'retouch_lite_page_footer', 40 );
 
 /**
  * Navigation
