@@ -53,8 +53,12 @@ if ( ! class_exists( 'Retouch_Lite' ) ) {
 			require get_template_directory() . '/inc/template-tags.php';
 			// Functions which enhance the theme by hooking into WordPress.
 			require get_template_directory() . '/inc/template-functions.php';
+			// Load template hooks.
+			require get_template_directory() . '/inc/template-hooks.php';
 			// Customizer additions.
 			require get_template_directory() . '/inc/customizer.php';
+			// Extras.
+			require get_template_directory() . '/inc/extras.php';
 
 			// Load Jetpack compatibility file.
 			if ( defined( 'JETPACK__VERSION' ) ) {
@@ -65,14 +69,6 @@ if ( ! class_exists( 'Retouch_Lite' ) ) {
 			if ( class_exists( 'WooCommerce' ) ) {
 				require get_template_directory() . '/inc/woocommerce.php';
 			}
-
-			// Load hooks and functions.
-			require get_template_directory() . '/inc/retouch-lite-functions.php';
-			require get_template_directory() . '/inc/retouch-lite-template-functions.php';
-			require get_template_directory() . '/inc/retouch-lite-template-hooks.php';
-
-			// Extras.
-			require get_template_directory() . '/inc/extras.php';
 		}
 
 		/**
