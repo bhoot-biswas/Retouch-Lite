@@ -229,7 +229,7 @@ template {
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 0.5rem;
   font-family: "Poppins", sans-serif;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1.2;
   color: inherit; }
 h1, .h1 {
@@ -274,7 +274,7 @@ small, .small {
 mark, .mark {
   padding: 0.2em;
   background-color: #fcf8e3; }
-.list-unstyled {
+.list-unstyled, .widget ul {
   padding-left: 0;
   list-style: none; }
 .list-inline {
@@ -1827,32 +1827,26 @@ textarea:invalid, .was-validated select:invalid, .form-control.is-invalid, input
     background-image: none; }
 a.btn.disabled, fieldset[disabled] a.btn {
   pointer-events: none; }
-.btn-primary, button, input[type="button"], input[type="reset"], input[type="submit"] {
+.btn-primary {
   color: #fff;
   background-color: #007bff;
   border-color: #007bff; }
-.btn-primary:hover, button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover {
+.btn-primary:hover {
     color: #fff;
     background-color: #0069d9;
     border-color: #0062cc; }
-.btn-primary:focus, button:focus, input[type="button"]:focus, input[type="reset"]:focus, input[type="submit"]:focus, .btn-primary.focus, button.focus, input.focus[type="button"], input.focus[type="reset"], input.focus[type="submit"] {
+.btn-primary:focus, .btn-primary.focus {
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); }
-.btn-primary.disabled, button.disabled, input.disabled[type="button"], input.disabled[type="reset"], input.disabled[type="submit"], .btn-primary:disabled, button:disabled, input[type="button"]:disabled, input[type="reset"]:disabled, input[type="submit"]:disabled {
+.btn-primary.disabled, .btn-primary:disabled {
     background-color: #007bff;
     border-color: #007bff; }
-.btn-primary:not([disabled]):not(.disabled):active, button:not([disabled]):not(.disabled):active, input[type="button"]:not([disabled]):not(.disabled):active, input[type="reset"]:not([disabled]):not(.disabled):active, input[type="submit"]:not([disabled]):not(.disabled):active, .btn-primary:not([disabled]):not(.disabled).active, button:not([disabled]):not(.disabled).active, input[type="button"]:not([disabled]):not(.disabled).active, input[type="reset"]:not([disabled]):not(.disabled).active, input[type="submit"]:not([disabled]):not(.disabled).active, .show > .btn-primary.dropdown-toggle, .show > button.dropdown-toggle, .show >
-  input.dropdown-toggle[type="button"], .show >
-  input.dropdown-toggle[type="reset"], .show >
-  input.dropdown-toggle[type="submit"], .navbar-nav
+.btn-primary:not([disabled]):not(.disabled):active, .btn-primary:not([disabled]):not(.disabled).active, .show > .btn-primary.dropdown-toggle, .navbar-nav
   .page_item_has_children.show > a.btn-primary, .navbar-nav
   .menu-item-has-children.show > a.btn-primary {
     color: #fff;
     background-color: #0062cc;
     border-color: #005cbf; }
-.btn-primary:not([disabled]):not(.disabled):active:focus, button:not([disabled]):not(.disabled):active:focus, input[type="button"]:not([disabled]):not(.disabled):active:focus, input[type="reset"]:not([disabled]):not(.disabled):active:focus, input[type="submit"]:not([disabled]):not(.disabled):active:focus, .btn-primary:not([disabled]):not(.disabled).active:focus, button:not([disabled]):not(.disabled).active:focus, input[type="button"]:not([disabled]):not(.disabled).active:focus, input[type="reset"]:not([disabled]):not(.disabled).active:focus, input[type="submit"]:not([disabled]):not(.disabled).active:focus, .show > .btn-primary.dropdown-toggle:focus, .show > button.dropdown-toggle:focus, .show >
-    input.dropdown-toggle[type="button"]:focus, .show >
-    input.dropdown-toggle[type="reset"]:focus, .show >
-    input.dropdown-toggle[type="submit"]:focus, .navbar-nav
+.btn-primary:not([disabled]):not(.disabled):active:focus, .btn-primary:not([disabled]):not(.disabled).active:focus, .show > .btn-primary.dropdown-toggle:focus, .navbar-nav
     .page_item_has_children.show > a.btn-primary:focus, .navbar-nav
     .menu-item-has-children.show > a.btn-primary:focus {
       box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); }
@@ -6739,7 +6733,7 @@ a.text-light:focus, a.text-light:hover {
   color: #343a40 !important; }
 a.text-dark:focus, a.text-dark:hover {
   color: #1d2124 !important; }
-.text-muted {
+.text-muted, .widget_recent_entries .post-date {
   color: #868e96 !important; }
 .text-hide {
   font: 0/0 a;
@@ -6934,10 +6928,16 @@ textarea {
 # Widgets
 --------------------------------------------------------------*/
 .widget {
-  margin: 0 0 1.5em;
   /* Make sure select elements fit in widgets. */ }
+.widget:not(:last-child) {
+    margin: 0 0 1.5em; }
 .widget select {
     max-width: 100%; }
+.widget li:not(:last-child) {
+    margin-bottom: .5rem; }
+.widget_recent_entries .post-date {
+  display: block;
+  font-size: 0.875rem; }
 /*--------------------------------------------------------------
 # Content
 --------------------------------------------------------------*/
