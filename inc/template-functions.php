@@ -82,7 +82,7 @@ if ( ! function_exists( 'retouch_lite_primary_navigation' ) ) {
 	 */
 	function retouch_lite_primary_navigation() {
 		?>
-		<nav id="site-navigation" class="main-navigation navbar navbar-expand-lg navbar-light bg-light">
+		<nav id="site-navigation" class="main-navigation navbar navbar-expand-lg navbar-light bg-white">
 			<div class="container">
 				<?php
 				/**
@@ -142,7 +142,7 @@ if ( ! function_exists( 'retouch_lite_navbar_toggler' ) ) {
 	function retouch_lite_navbar_toggler() {
 		?>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-			<?php esc_html_e( 'Primary Menu', 'retouch-lite' ); ?>
+			<span class="screen-reader-text"><?php esc_html_e( 'Primary Menu', 'retouch-lite' ); ?></span>
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<?php
@@ -182,7 +182,10 @@ if ( ! function_exists( 'retouch_lite_primary_menu' ) ) {
 	function retouch_lite_primary_menu() {
 		wp_nav_menu( array(
 			'theme_location' => 'menu-1',
-			'menu_id'        => 'primary-menu',
+			'container'      => false,
+			'menu_id'        => '',
+			'menu_class'     => 'navbar-nav',
+			'fallback_cb'    => '',
 		) );
 	}
 }
