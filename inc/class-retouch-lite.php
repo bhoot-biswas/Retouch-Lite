@@ -210,6 +210,9 @@ if ( ! class_exists( 'Retouch_Lite' ) ) {
 		 * Enqueue styles.
 		 */
 		public function styles() {
+			// Add custom fonts, used in the main stylesheet.
+			wp_enqueue_style( 'retouch-lite-fonts', retouch_lite_fonts_url(), array(), null );
+
 			// Load gallery style if 'cleaner-gallery' is active.
 			if ( current_theme_supports( 'cleaner-gallery' ) ) {
 				wp_enqueue_style( 'hybrid-gallery' );

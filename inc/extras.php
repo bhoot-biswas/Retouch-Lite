@@ -60,3 +60,36 @@ function retouch_lite_has_post_thumbnail( $post = null ) {
 		return has_post_thumbnail( $post );
 	}
 }
+
+/**
+ * Register custom fonts.
+ */
+function retouch_lite_fonts_url() {
+	$fonts_url = '';
+	$fonts     = array();
+	$subsets   = 'latin,latin-ext';
+
+	/* translators: If there are characters in your language that are not supported by Lato, translate this to 'off'. Do not translate into your own language. */
+	if ( 'off' !== _x( 'on', 'Lato font: on or off', 'retouch-lite' ) ) {
+		$fonts[] = 'Lato:100,300,400,700,900';
+	}
+
+	/* translators: If there are characters in your language that are not supported by Poppins, translate this to 'off'. Do not translate into your own language. */
+	if ( 'off' !== _x( 'on', 'Poppins font: on or off', 'retouch-lite' ) ) {
+		$fonts[] = 'Poppins:100,200,300,400,500,600,700,800,900';
+	}
+
+	/* translators: If there are characters in your language that are not supported by Material Icons, translate this to 'off'. Do not translate into your own language. */
+	if ( 'off' !== _x( 'on', 'Material Icons font: on or off', 'retouch-lite' ) ) {
+		$fonts[] = 'Material Icons';
+	}
+
+	if ( $fonts ) {
+		$fonts_url = add_query_arg( array(
+			'family' => rawurlencode( implode( '|', $fonts ) ),
+			'subset' => rawurlencode( $subsets ),
+		), 'https://fonts.googleapis.com/css' );
+	}
+
+	return $fonts_url;
+}
