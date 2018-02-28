@@ -293,7 +293,7 @@ if ( ! function_exists( 'retouch_lite_post_hero' ) ) {
 		<div class="entry-hero" <?php retouch_lite_background_image(); ?>>
 			<div class="entry-hero-wrapper">
 				<?php
-				retouch_lite_entry_meta();
+				retouch_lite_post_categories();
 
 				the_title( '<h1 class="entry-title">', '</h1>' );
 				?>
@@ -315,7 +315,7 @@ if ( ! function_exists( 'retouch_lite_post_header' ) ) {
 		<header class="entry-header" <?php retouch_lite_background_image(); ?>>
 			<div class="entry-header__wrap">
 				<?php
-				retouch_lite_entry_meta();
+				retouch_lite_post_categories();
 
 				if ( is_singular() ) :
 					the_title( '<h1 class="entry-title">', '</h1>' );
