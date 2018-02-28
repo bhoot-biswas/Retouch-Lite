@@ -1,0 +1,42 @@
+@mixin arrow-down {
+    &::after {
+        content: "keyboard_arrow_down";
+    }
+}
+@mixin arrow-up {
+    &::after {
+        content: "keyboard_arrow_up";
+    }
+}
+@mixin arrow-right {
+    &::after {
+        content: "keyboard_arrow_right";
+    }
+}
+@mixin arrow-left {
+    &::after {
+        content: "keyboard_arrow_left";
+    }
+}
+@mixin arrow($direction: down) {
+    @if $enable-arrow {
+        &::after {
+            font-family: "Material Icons";
+            display: inline-block;
+            content: "";
+            vertical-align: middle;
+        }
+        @if $direction == down {
+            @include arrow-down;
+        } @else
+        if $direction == up {
+            @include arrow-up;
+        } @else
+        if $direction == right {
+            @include arrow-right;
+        } @else
+        if $direction == left {
+            @include arrow-left;
+        }
+    }
+}

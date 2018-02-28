@@ -69,9 +69,9 @@ function retouch_lite_fonts_url() {
 	$fonts     = array();
 	$subsets   = 'latin,latin-ext';
 
-	/* translators: If there are characters in your language that are not supported by Lato, translate this to 'off'. Do not translate into your own language. */
-	if ( 'off' !== _x( 'on', 'Lato font: on or off', 'retouch-lite' ) ) {
-		$fonts[] = 'Lato:100,300,400,700,900';
+	/* translators: If there are characters in your language that are not supported by Roboto, translate this to 'off'. Do not translate into your own language. */
+	if ( 'off' !== _x( 'on', 'Roboto font: on or off', 'retouch-lite' ) ) {
+		$fonts[] = 'Roboto:100,300,400,500,700,900';
 	}
 
 	/* translators: If there are characters in your language that are not supported by Poppins, translate this to 'off'. Do not translate into your own language. */

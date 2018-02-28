@@ -1,0 +1,16 @@
+.dropdown,
+.navbar-nav ul {
+    border: 0;
+    font-size: $font-size-sm;
+}
+
+.dropdown-toggle {
+    &::after {
+        border: 0;
+        font-family: "Material Icons";
+        content: "keyboard_arrow_down";
+        line-height: normal;
+        vertical-align: middle;
+        display: inline;
+    }
+}

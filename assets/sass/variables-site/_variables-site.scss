@@ -1,3 +1,9 @@
+$enable-shadows: true;
+$enable-arrow: true;
+$dropdown-box-shadow: 0 0 1rem 0 rgba(0,0,0,0.1);
+$dropdown-min-width: 12rem;
+$dropdown-item-padding-y: .5rem;
+
 @import "colors";
 @import "typography";
 @import "structure";
