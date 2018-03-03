@@ -45,6 +45,58 @@ if ( ! function_exists( 'retouch_lite_display_comments' ) ) {
 	}
 }
 
+if ( ! function_exists( 'retouch_lite_footer_widgets' ) ) {
+	/**
+	 * Display the footer widget regions.
+	 *
+	 * @since  1.0.0
+	 * @return void
+	 */
+	function retouch_lite_footer_widgets() {
+		$rows    = intval( apply_filters( 'retouch_lite_footer_widget_rows', 1 ) );
+		$regions = intval( apply_filters( 'retouch_lite_footer_widget_columns', 4 ) );
+
+		for ( $row = 1; $row <= $rows; $row++ ) :
+
+			// Defines the number of active columns in this footer row.
+			for ( $region = $regions; 0 < $region; $region-- ) {
+				if ( is_active_sidebar( 'footer-' . strval( $region + $regions * ( $row - 1 ) ) ) ) {
+					$columns = $region;
+					break;
+				}
+			}
+
+			if ( isset( $columns ) ) : ?>
+				<div class=<?php echo '"footer-widgets row-' . esc_attr( strval( $row ) ) . ' columns-' . esc_attr( strval( $columns ) ) . ' fix"'; ?>>
+					<div class="container">
+						<div class="row">
+							<?php
+							for ( $column = 1; $column <= $columns; $column++ ) :
+								$footer_n = $column + $regions * ( $row - 1 );
+
+								if ( is_active_sidebar( 'footer-' . strval( $footer_n ) ) ) :
+									?>
+
+									<div class="block footer-widget-<?php echo esc_attr( strval( $column ) ); ?>">
+										<?php dynamic_sidebar( 'footer-' . strval( $footer_n ) ); ?>
+									</div>
+
+									<?php
+
+								endif;
+							endfor;
+							?>
+						</div>
+					</div>
+				</div><!-- .footer-widgets -->
+				<?php
+
+				unset( $columns );
+			endif;
+		endfor;
+	}
+}
+
 if ( ! function_exists( 'retouch_lite_credit' ) ) {
 	/**
 	 * Display the theme credit

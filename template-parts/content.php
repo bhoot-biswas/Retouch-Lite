@@ -15,10 +15,10 @@
 	/**
 	 * Functions hooked into retouch_lite_post
 	 *
-	 * @hooked retouch_lite_post_header [10]
+	 * @hooked retouch_lite_post_header    [10]
 	 * @hooked retouch_lite_post_thumbnail [20]
-	 * @hooked retouch_lite_post_content [30]
-	 * @hooked retouch_lite_post_footer [40]
+	 * @hooked retouch_lite_post_content   [30]
+	 * @hooked retouch_lite_post_footer    [40]
 	 */
 	do_action( 'retouch_lite_post' );
 	?>

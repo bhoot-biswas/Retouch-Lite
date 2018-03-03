@@ -61,7 +61,7 @@ article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, s
   display: block; }
 body {
   margin: 0;
-  font-family: "Lato", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -4737,7 +4737,7 @@ button.close {
   z-index: 1070;
   display: block;
   margin: 0;
-  font-family: "Lato", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -4816,7 +4816,7 @@ button.close {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family: "Lato", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -6981,6 +6981,30 @@ textarea {
 /*--------------------------------------------------------------
 # Widgets
 --------------------------------------------------------------*/
+.footer-widgets {
+  padding: 5rem 0;
+  background-color: #f8f9fa; }
+.footer-widgets .block {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px; }
+@media (min-width: 992px) {
+    .footer-widgets .block {
+      -ms-flex-preferred-size: 0;
+          flex-basis: 0;
+      -webkit-box-flex: 1;
+          -ms-flex-positive: 1;
+              flex-grow: 1;
+      max-width: 100%; } }
+@media (max-width: 991.99px) {
+    .footer-widgets .block {
+      margin-bottom: 3rem; }
+      .footer-widgets .block:last-child {
+        margin-bottom: 0; } }
+.site-info {
+  padding: 2rem 0; }
 .widget {
   /* Make sure select elements fit in widgets. */ }
 .widget:not(:last-child) {

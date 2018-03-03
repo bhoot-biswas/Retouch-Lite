@@ -15,9 +15,9 @@
 	/**
 	 * Functions hooked into retouch_lite_page
 	 *
-	 * @hooked retouch_lite_page_header [10]
+	 * @hooked retouch_lite_page_header    [10]
 	 * @hooked retouch_lite_post_thumbnail [20]
-	 * @hooked retouch_lite_page_content [30]
+	 * @hooked retouch_lite_page_content   [30]
 	 */
 	do_action( 'retouch_lite_page' );
 	?>

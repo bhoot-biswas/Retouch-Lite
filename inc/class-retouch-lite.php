@@ -155,13 +155,67 @@ if ( ! class_exists( 'Retouch_Lite' ) ) {
 		 * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
 		 */
 		public function widgets_init() {
-			hybrid_register_sidebar(
-				array(
-					'id'          => 'sidebar-1',
-					'name'        => esc_html__( 'Sidebar', 'retouch-lite' ),
-					'description' => esc_html__( 'Add widgets here.', 'retouch-lite' ),
-				)
+			$sidebar_args['sidebar'] = array(
+				'id'          => 'sidebar-1',
+				'name'        => esc_html__( 'Sidebar', 'retouch-lite' ),
+				'description' => esc_html__( 'Add widgets here.', 'retouch-lite' ),
 			);
+
+			$rows    = intval( apply_filters( 'retouch_lite_footer_widget_rows', 1 ) );
+			$regions = intval( apply_filters( 'retouch_lite_footer_widget_columns', 4 ) );
+
+			for ( $row = 1; $row <= $rows; $row++ ) {
+				for ( $region = 1; $region <= $regions; $region++ ) {
+					$footer_n = $region + $regions * ( $row - 1 ); // Defines footer sidebar ID.
+					$footer   = sprintf( 'footer_%d', $footer_n );
+
+					if ( 1 === $rows ) {
+						/* translators: 1: column id. */
+						$footer_region_name = sprintf( esc_html__( 'Footer Column %1$d', 'retouch-lite' ), $region );
+						/* translators: 1: column id. */
+						$footer_region_description = sprintf( esc_html__( 'Widgets added here will appear in column %1$d of the footer.', 'retouch-lite' ), $region );
+					} else {
+						/* translators: 1: row id, 2: column id. */
+						$footer_region_name = sprintf( esc_html__( 'Footer Row %1$d - Column %2$d', 'retouch-lite' ), $row, $region );
+						/* translators: 1: row id, 2: column id. */
+						$footer_region_description = sprintf( esc_html__( 'Widgets added here will appear in column %1$d of footer row %2$d.', 'retouch-lite' ), $region, $row );
+					}
+
+					$sidebar_args[ $footer ] = array(
+						'id'          => sprintf( 'footer-%d', $footer_n ),
+						'name'        => $footer_region_name,
+						'description' => $footer_region_description,
+					);
+				}
+			}
+
+			$sidebar_args = apply_filters( 'retouch_lite_sidebar_args', $sidebar_args );
+
+			foreach ( $sidebar_args as $sidebar => $args ) {
+				$widget_tags = array(
+					'before_widget' => '<div id="%1$s" class="widget %2$s">',
+					'after_widget'  => '</div>',
+					'before_title'  => '<span class="gamma widget-title">',
+					'after_title'   => '</span>',
+				);
+
+				/**
+				 * Dynamically generated filter hooks. Allow changing widget wrapper and title tags. See the list below.
+				 *
+				 * 'retouch_lite_sidebar_widget_tags'
+				 *
+				 * 'retouch_lite_footer_1_widget_tags'
+				 * 'retouch_lite_footer_2_widget_tags'
+				 * 'retouch_lite_footer_3_widget_tags'
+				 * 'retouch_lite_footer_4_widget_tags'
+				 */
+				$filter_hook = sprintf( 'retouch_lite_%s_widget_tags', $sidebar );
+				$widget_tags = apply_filters( $filter_hook, $widget_tags );
+
+				if ( is_array( $widget_tags ) ) {
+					register_sidebar( $args + $widget_tags );
+				}
+			}
 		}
 
 		/**

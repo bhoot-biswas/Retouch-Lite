@@ -1,3 +1,40 @@
+#colophon {}
+
+.footer-widgets {
+	padding: ($spacer * 5) 0;
+	background-color: $gray-100;
+
+	.block {
+		position: relative;
+		width: 100%;
+		min-height: 1px; // Prevent columns from collapsing when empty
+		padding-right: ($grid-gutter-width / 2);
+		padding-left: ($grid-gutter-width / 2);
+	}
+
+	@include media-breakpoint-up(lg) {
+		.block {
+			flex-basis: 0;
+			flex-grow: 1;
+			max-width: 100%;
+		}
+	}
+
+	@include media-breakpoint-down(md) {
+		.block {
+			margin-bottom: $spacer * 3;
+
+			&:last-child {
+				margin-bottom: 0;
+			}		
+		}
+	}
+}
+
+.site-info {
+	padding: 2rem 0;
+}
+
 .widget {
 	&:not(:last-child) {
 		margin: 0 0 1.5em;
