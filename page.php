@@ -23,8 +23,7 @@ get_header(); ?>
 
 				do_action( 'retouch_lite_page_before' );
 
-				// Loads the content/*.php template.
-				hybrid_get_content_template();
+				get_template_part( 'template-parts/content', 'page' );
 
 				/**
 				 * Functions hooked into retouch_lite_page_after

@@ -45,7 +45,7 @@ if ( ! class_exists( 'Retouch_Lite' ) ) {
 		 */
 		private function includes() {
 			// Launch the Hybrid Core framework.
-			require get_template_directory() . '/inc/framework/hybrid.php';
+			require get_template_directory() . '/hybrid-core/hybrid.php';
 
 			// Implement the Custom Header feature.
 			require get_template_directory() . '/inc/custom-header.php';

@@ -29,8 +29,7 @@ get_header(); ?>
 
 		else :
 
-			// Loads the content/error.php template.
-			locate_template( array( 'content/error.php' ), true );
+			get_template_part( 'template-parts/content', 'none' );
 
 		endif;
 		?>

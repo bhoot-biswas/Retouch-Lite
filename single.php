@@ -14,17 +14,17 @@ get_header(); ?>
 
 		<?php
 		while ( have_posts() ) :
+
 			the_post();
 
 			do_action( 'retouch_lite_single_post_before' );
 
-			// Loads the content/*.php template.
-			hybrid_get_content_template();
+			get_template_part( 'template-parts/content', get_post_type() );
 
 			/**
 			 * Functions hooked into retouch_lite_single_post_after
 			 *
-			 * @hooked retouch_lite_post_navigation [10]
+			 * @hooked retouch_lite_post_navigation  [10]
 			 * @hooked retouch_lite_display_comments [20]
 			 */
 			do_action( 'retouch_lite_single_post_after' );
