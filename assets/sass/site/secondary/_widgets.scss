@@ -1,8 +1,8 @@
 #colophon {}
 
 .footer-widgets {
-	padding: ($spacer * 5) 0;
-	background-color: $gray-100;
+	padding: $footer-widgets-padding-y 0;
+	background-color: $footer-widgets-bg;
 
 	.block {
 		position: relative;
@@ -26,13 +26,15 @@
 
 			&:last-child {
 				margin-bottom: 0;
-			}		
+			}
 		}
 	}
 }
 
 .site-info {
-	padding: 2rem 0;
+	padding: $site-info-padding-y 0;
+	color: $site-info-color;
+	background-color: $site-info-bg;
 }
 
 .widget {

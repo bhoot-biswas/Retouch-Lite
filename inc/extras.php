@@ -62,34 +62,23 @@ function retouch_lite_has_post_thumbnail( $post = null ) {
 }
 
 /**
- * Register custom fonts.
+ * Register google fonts.
  */
-function retouch_lite_fonts_url() {
-	$fonts_url = '';
-	$fonts     = array();
-	$subsets   = 'latin,latin-ext';
+function retouch_lite_google_fonts_url() {
+	$subsets = 'latin,latin-ext';
 
-	/* translators: If there are characters in your language that are not supported by Roboto, translate this to 'off'. Do not translate into your own language. */
-	if ( 'off' !== _x( 'on', 'Roboto font: on or off', 'retouch-lite' ) ) {
-		$fonts[] = 'Roboto:100,300,400,500,700,900';
-	}
+	$google_fonts = apply_filters( 'retouch_lite_google_font_families', array(
+		'roboto'         => 'Roboto:100,300,400,500,700,900',
+		'poppins'        => 'Poppins:100,200,300,400,500,600,700,800,900',
+		'material-icons' => 'Material Icons',
+	) );
 
-	/* translators: If there are characters in your language that are not supported by Poppins, translate this to 'off'. Do not translate into your own language. */
-	if ( 'off' !== _x( 'on', 'Poppins font: on or off', 'retouch-lite' ) ) {
-		$fonts[] = 'Poppins:100,200,300,400,500,600,700,800,900';
-	}
+	$query_args = array(
+		'family' => rawurlencode( implode( '|', $google_fonts ) ),
+		'subset' => rawurlencode( $subsets ),
+	);
 
-	/* translators: If there are characters in your language that are not supported by Material Icons, translate this to 'off'. Do not translate into your own language. */
-	if ( 'off' !== _x( 'on', 'Material Icons font: on or off', 'retouch-lite' ) ) {
-		$fonts[] = 'Material Icons';
-	}
-
-	if ( $fonts ) {
-		$fonts_url = add_query_arg( array(
-			'family' => rawurlencode( implode( '|', $fonts ) ),
-			'subset' => rawurlencode( $subsets ),
-		), 'https://fonts.googleapis.com/css' );
-	}
+	$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
 
 	return $fonts_url;
 }

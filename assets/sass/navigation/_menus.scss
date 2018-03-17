@@ -111,6 +111,26 @@
 						padding: 0.75rem 0;
 					}
 				}
+
+				&.navbar-light {
+					.navbar-nav {
+						li {
+							&:not(:first-child) a {
+								border-top-color: $gray-100;
+							}
+						}
+					}
+				}
+
+				&.navbar-dark {
+					.navbar-nav {
+						li {
+							&:not(:first-child) a {
+								border-top-color: $white;
+							}
+						}
+					}
+				}
 			}
 			@include media-breakpoint-up($next) {
 				.navbar-nav {
@@ -141,23 +161,6 @@
 			color: $navbar-light-active-color;
 		}
 	}
-
-	@each $breakpoint in map-keys($grid-breakpoints) {
-		$next: breakpoint-next($breakpoint, $grid-breakpoints);
-
-		@include media-breakpoint-down($breakpoint) {
-			.navbar-nav {
-				li {
-					&:not(:first-child) a {
-						border-top-color: $gray-100;
-					}
-				}
-			}
-		}
-		@include media-breakpoint-up($next) {
-
-		}
-	}
 }
 
 .navbar-dark {
@@ -167,23 +170,6 @@
 		.current_page_ancestor > a,
 		.current_page_item > a {
 			color: $navbar-dark-active-color;
-		}
-	}
-
-	@each $breakpoint in map-keys($grid-breakpoints) {
-		$next: breakpoint-next($breakpoint, $grid-breakpoints);
-
-		@include media-breakpoint-down($breakpoint) {
-			.navbar-nav {
-				li {
-					&:not(:first-child) a {
-						border-top-color: $white;
-					}
-				}
-			}
-		}
-		@include media-breakpoint-up($next) {
-
 		}
 	}
 }
