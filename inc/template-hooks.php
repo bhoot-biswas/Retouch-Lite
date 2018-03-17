@@ -70,9 +70,9 @@ add_action( 'retouch_lite_sidebar', 'retouch_lite_get_sidebar', 10 );
 
 /**
  * Footer
+ *
  * @see  retouch_lite_footer_widgets()
  * @see  retouch_lite_credit()
  */
 add_action( 'retouch_lite_footer', 'retouch_lite_footer_widgets', 10 );
 add_action( 'retouch_lite_footer', 'retouch_lite_credit', 20 );
-
